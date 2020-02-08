@@ -26,8 +26,8 @@ namespace specflow_demo.tests
 			ScenarioContext.Current.Pending();
 		}
 
-		[Then(@"the result should be the weather forecast for next five days")]
-		public void ThenTheResultShouldBeTheWeatherForecastForNextFiveDays()
+		[Then(@"the result should be the weather forecast for next (.*) days")]
+		public void ThenTheResultShouldBeTheWeatherForecastForNextFiveDays(int days)
 		{
 			ScenarioContext.Current.Pending();
 		}
