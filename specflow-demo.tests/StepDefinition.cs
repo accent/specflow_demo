@@ -15,8 +15,6 @@ namespace specflow_demo.tests
 		// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
 		private readonly ScenarioContext context;
-		private string baseUrl;
-		private HttpResponseMessage response;
 
 		public StepDefinition(ScenarioContext injectedContext)
 		{
@@ -26,22 +24,23 @@ namespace specflow_demo.tests
 		[Given(@"Weather forecast (.*)")]
 		public void GivenWeatherForecastUrl(string baseUrl)
 		{
-			this.baseUrl = baseUrl;
+			this.context.Add("baseUrl", baseUrl);
 		}
 
 		[When(@"I request the forecast (.*)")]
 		public async Task WhenIRequestTheForecast(string requestUrl)
 		{
 			var httpClient = new HttpClient();
-			httpClient.BaseAddress = new Uri(this.baseUrl);
-			this.response = await httpClient.GetAsync(requestUrl);
+			httpClient.BaseAddress = new Uri(this.context["baseUrl"].ToString());
+			this.context.Add("response", await httpClient.GetAsync(requestUrl));
 		}
 
 		[Then(@"the result should be the weather forecast for next (.*) days")]
 		public async Task ThenTheResultShouldBeTheWeatherForecastForNextFiveDays(int days)
 		{
-			Assert.AreEqual(HttpStatusCode.OK, this.response.StatusCode);
-			var responseContent = await this.response.Content.ReadAsStringAsync();
+			var response = this.context["response"] as HttpResponseMessage;
+			Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+			var responseContent = await response.Content.ReadAsStringAsync();
 			var receivedDays = JsonConvert.DeserializeObject<List<WeatherForecastModel>>(responseContent).Count;
 			Assert.AreEqual(days, receivedDays);
 		}
