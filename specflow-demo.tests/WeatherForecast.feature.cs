@@ -92,7 +92,7 @@ namespace specflow_demo.tests
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void ValidWeatherForcastForNext5Days(string url, string days, string[] exampleTags)
+        public virtual void ValidWeatherForcastForNext5Days(string baseUrl, string requestUrl, string days, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valid weather forcast for next 5 days", null, exampleTags);
@@ -117,28 +117,29 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("Weather forecast url", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("Weather forecast {0}", baseUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("I request the forecast", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I request the forecast {0}", requestUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("the result should be the weather forecast for next 5 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("the result should be the weather forecast for next {0} days", days), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Valid weather forcast for next 5 days: http://localhost:52422/weatherforecast")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Valid weather forcast for next 5 days: http://localhost:52422")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Weather")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "http://localhost:52422/weatherforecast")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:url", "http://localhost:52422/weatherforecast")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "http://localhost:52422")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseUrl", "http://localhost:52422")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:requestUrl", "weatherforecast")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:days", "5")]
-        public virtual void ValidWeatherForcastForNext5Days_HttpLocalhost52422Weatherforecast()
+        public virtual void ValidWeatherForcastForNext5Days_HttpLocalhost52422()
         {
 #line 6
-this.ValidWeatherForcastForNext5Days("http://localhost:52422/weatherforecast", "5", ((string[])(null)));
+this.ValidWeatherForcastForNext5Days("http://localhost:52422", "weatherforecast", "5", ((string[])(null)));
 #line hidden
         }
     }

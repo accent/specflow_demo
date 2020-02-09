@@ -1,4 +1,11 @@
-﻿using TechTalk.SpecFlow;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using TechTalk.SpecFlow;
 
 namespace specflow_demo.tests
 {
@@ -8,29 +15,46 @@ namespace specflow_demo.tests
 		// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
 		private readonly ScenarioContext context;
+		private string baseUrl;
+		private HttpResponseMessage response;
 
 		public StepDefinition(ScenarioContext injectedContext)
 		{
-			context = injectedContext;
+			this.context = injectedContext;
 		}
 
 		[Given(@"Weather forecast (.*)")]
-		public void GivenWeatherForecastUrl(string url)
+		public void GivenWeatherForecastUrl(string baseUrl)
 		{
-			ScenarioContext.Current.Pending();
+			this.baseUrl = baseUrl;
 		}
-		
-		[When(@"I request the forecast")]
-		public void WhenIRequestTheForecast()
+
+		[When(@"I request the forecast (.*)")]
+		public async Task WhenIRequestTheForecast(string requestUrl)
 		{
-			ScenarioContext.Current.Pending();
+			var httpClient = new HttpClient();
+			httpClient.BaseAddress = new Uri(this.baseUrl);
+			this.response = await httpClient.GetAsync(requestUrl);
 		}
 
 		[Then(@"the result should be the weather forecast for next (.*) days")]
-		public void ThenTheResultShouldBeTheWeatherForecastForNextFiveDays(int days)
+		public async Task ThenTheResultShouldBeTheWeatherForecastForNextFiveDays(int days)
 		{
-			ScenarioContext.Current.Pending();
+			Assert.AreEqual(HttpStatusCode.OK, this.response.StatusCode);
+			var responseContent = await this.response.Content.ReadAsStringAsync();
+			var receivedDays = JsonConvert.DeserializeObject<List<WeatherForecastModel>>(responseContent).Count;
+			Assert.AreEqual(days, receivedDays);
 		}
 
+		private class WeatherForecastModel
+		{
+			public DateTime Date { get; set; }
+
+			public int TemperatureC { get; set; }
+
+			public int TemperatureF { get; set; }
+
+			public string Summary { get; set; }
+		}
 	}
 }
