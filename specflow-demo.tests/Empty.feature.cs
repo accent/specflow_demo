@@ -20,7 +20,7 @@ namespace specflow_demo.tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class WeatherFeature
+    public partial class EmptyFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -29,7 +29,7 @@ namespace specflow_demo.tests
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "WeatherForecast.feature"
+#line 1 "Empty.feature"
 #line hidden
         
         public virtual Microsoft.VisualStudio.TestTools.UnitTesting.TestContext TestContext
@@ -48,8 +48,7 @@ namespace specflow_demo.tests
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Weather", "\tIn order to prepare the right things for a trip\r\n\tAs a traveller\r\n\tI want to che" +
-                    "ck the weather for next five days ", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Empty", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -64,9 +63,9 @@ namespace specflow_demo.tests
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "Weather")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "Empty")))
             {
-                global::specflow_demo.tests.WeatherFeature.FeatureSetup(null);
+                global::specflow_demo.tests.EmptyFeature.FeatureSetup(null);
             }
         }
         
@@ -92,11 +91,14 @@ namespace specflow_demo.tests
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void ValidWeatherForcastForNext5Days(string baseUrl, string requestUrl, string days, string[] exampleTags)
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Empty returns empty OK")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Empty")]
+        public virtual void EmptyReturnsEmptyOK()
         {
-            string[] tagsOfScenario = exampleTags;
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Valid weather forcast for next 5 days", null, exampleTags);
-#line 6
+            string[] tagsOfScenario = ((string[])(null));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Empty returns empty OK", null, ((string[])(null)));
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -116,31 +118,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 7
- testRunner.Given(string.Format("Server URL {0}", baseUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 4
+ testRunner.Given("Server URL http://localhost:52422/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 8
- testRunner.When(string.Format("I request the GET data from {0}", requestUrl), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 5
+ testRunner.When("I request the GET data from Empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 9
- testRunner.Then(string.Format("the result should be the weather forecast for next {0} days", days), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+ testRunner.Then("The result should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
-        }
-        
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Valid weather forcast for next 5 days: http://localhost:52422")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Weather")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "http://localhost:52422")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:baseUrl", "http://localhost:52422")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:requestUrl", "weatherforecast")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:days", "5")]
-        public virtual void ValidWeatherForcastForNext5Days_HttpLocalhost52422()
-        {
-#line 6
-this.ValidWeatherForcastForNext5Days("http://localhost:52422", "weatherforecast", "5", ((string[])(null)));
-#line hidden
         }
     }
 }
