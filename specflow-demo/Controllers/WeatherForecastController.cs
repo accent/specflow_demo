@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using specflow_demo.data;
 
 namespace specflow_demo.Controllers
 {
@@ -10,16 +11,18 @@ namespace specflow_demo.Controllers
 	[Route("[controller]")]
 	public class WeatherForecastController : ControllerBase
 	{
+		private LocalDbContext dbContext;
+		private readonly ILogger<WeatherForecastController> logger;
+
 		private static readonly string[] Summaries = new[]
 		{
 			"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 		};
 
-		private readonly ILogger<WeatherForecastController> _logger;
-
-		public WeatherForecastController(ILogger<WeatherForecastController> logger)
+		public WeatherForecastController(ILogger<WeatherForecastController> logger, LocalDbContext dbContext)
 		{
-			_logger = logger;
+			this.logger = logger;
+			this.dbContext = dbContext;
 		}
 
 		[HttpGet]
@@ -33,6 +36,12 @@ namespace specflow_demo.Controllers
 				Summary = Summaries[rng.Next(Summaries.Length)]
 			})
 			.ToArray();
+		}
+
+		[HttpGet("get-db")]
+		public IEnumerable<Weather> GetFromDb()
+		{
+			return this.dbContext.Weathers.Take(5);
 		}
 	}
 }

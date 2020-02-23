@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "specflow-demo", "specflow-demo.csproj", "{48D65B85-6CBF-4BD3-82F7-E3DA0CDF130A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "specflow-demo", "specflow-demo.csproj", "{48D65B85-6CBF-4BD3-82F7-E3DA0CDF130A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "specflow-demo.tests", "..\specflow-demo.tests\specflow-demo.tests.csproj", "{A2E9DAAE-B990-43E8-8D0D-F24191BD8C62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "specflow-demo.tests", "..\specflow-demo.tests\specflow-demo.tests.csproj", "{A2E9DAAE-B990-43E8-8D0D-F24191BD8C62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "specflow-demo.data", "..\specflow-demo.data\specflow-demo.data.csproj", "{9AA4866D-9B98-4611-932D-8DDECBB96761}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A2E9DAAE-B990-43E8-8D0D-F24191BD8C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2E9DAAE-B990-43E8-8D0D-F24191BD8C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2E9DAAE-B990-43E8-8D0D-F24191BD8C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA4866D-9B98-4611-932D-8DDECBB96761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA4866D-9B98-4611-932D-8DDECBB96761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA4866D-9B98-4611-932D-8DDECBB96761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA4866D-9B98-4611-932D-8DDECBB96761}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
